@@ -120,7 +120,7 @@ export default function StorageReport({ className }: { className?: string }) {
 
   return (
     <WidgetCard
-      title={'Total Storage used'}
+      title={'Total Storage used luqya'}
       titleClassName="font-normal text-gray-700 sm:text-base font-inter"
       description={
         <div className="flex items-center justify-start text-lg">
