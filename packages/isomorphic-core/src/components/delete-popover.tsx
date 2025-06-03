@@ -48,7 +48,7 @@ export default function DeletePopover({
                   setOpen(false);
                 }}
               >
-                Yes
+                نعم
               </Button>
               <Button
                 size="sm"
@@ -56,7 +56,7 @@ export default function DeletePopover({
                 className="h-7"
                 onClick={() => setOpen(false)}
               >
-                No
+                لا
               </Button>
             </div>
           </div>

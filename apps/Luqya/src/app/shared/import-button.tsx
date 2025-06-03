@@ -18,14 +18,15 @@ type ImportButtonProps = {
 
 export default function ImportButton({
   title,
-  modalBtnLabel = 'Import File',
+ modalBtnLabel = 'استيراد الملف',
   className,
-  buttonLabel = 'Import',
+  buttonLabel = 'استيراد',
 }: React.PropsWithChildren<ImportButtonProps>) {
   const { openModal } = useModal();
 
   return (
     <Button
+       variant="outline"
       onClick={() =>
         openModal({
           view: (

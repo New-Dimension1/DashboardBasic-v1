@@ -38,7 +38,7 @@ export default function Filters<TData extends Record<string, any>>({
     <Flex align="center" justify="between" className="mb-4">
       <Input
         type="search"
-        placeholder="Search by product name..."
+        placeholder="ابحث عن المجموعة ..."
         value={table.getState().globalFilter ?? ''}
         onClear={() => table.setGlobalFilter('')}
         onChange={(e) => table.setGlobalFilter(e.target.value)}
@@ -47,7 +47,7 @@ export default function Filters<TData extends Record<string, any>>({
         prefix={<PiMagnifyingGlassBold className="size-4" />}
       />
 
-      <FilterDrawerView
+      {/* <FilterDrawerView
         isOpen={openDrawer}
         drawerTitle="Table Filters"
         setOpenDrawer={setOpenDrawer}
@@ -55,7 +55,7 @@ export default function Filters<TData extends Record<string, any>>({
         <div className="grid grid-cols-1 gap-6">
           <FilterElements table={table} />
         </div>
-      </FilterDrawerView>
+      </FilterDrawerView> */}
 
       <Flex align="center" gap="3" className="w-auto">
         {isMultipleSelected ? (
@@ -75,14 +75,14 @@ export default function Filters<TData extends Record<string, any>>({
           </Button>
         ) : null}
 
-        <Button
+        {/* <Button
           variant={'outline'}
           onClick={() => setOpenDrawer(!openDrawer)}
           className="h-9 pe-3 ps-2.5"
         >
           <PiFunnel className="me-1.5 size-[18px]" strokeWidth={1.7} />
           Filters
-        </Button>
+        </Button> */}
 
         <ToggleColumns table={table} />
       </Flex>

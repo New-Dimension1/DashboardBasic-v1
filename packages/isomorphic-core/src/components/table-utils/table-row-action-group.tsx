@@ -11,8 +11,8 @@ export default function TableRowActionGroup({
   onDelete,
   editUrl = "#",
   viewUrl = "#",
-  deletePopoverTitle = "Delete the appointment",
-  deletePopoverDescription = "Are you sure you want to delete this item?",
+  deletePopoverTitle = "حذف الدعوة",
+  deletePopoverDescription = "هل أنت متأكد تريد حذف الدعوة ؟",
   className,
 }: {
   onDelete?: () => void;
@@ -29,7 +29,7 @@ export default function TableRowActionGroup({
       gap="3"
       className={cn("pe-3", className)}
     >
-      <Tooltip size="sm" content="Edit Item" placement="top" color="invert">
+      {/* <Tooltip size="sm" content="Edit Item" placement="top" color="invert">
         <Link href={editUrl}>
           <ActionIcon
             as="span"
@@ -40,8 +40,8 @@ export default function TableRowActionGroup({
             <PencilIcon className="size-4" />
           </ActionIcon>
         </Link>
-      </Tooltip>
-      <Tooltip size="sm" content="View Item" placement="top" color="invert">
+      </Tooltip> */}
+      <Tooltip size="sm" content="تفاصيل الدعوة" placement="top" color="invert">
         <Link href={viewUrl}>
           <ActionIcon
             as="span"

@@ -68,17 +68,17 @@ function ProfileMenuPopover({ children }: React.PropsWithChildren<{}>) {
 
 const menuItems = [
   {
-    name: 'My Profile',
+    name: 'الملف الشخصي',
     href: routes.profile,
   },
-  {
-    name: 'Account Settings',
-    href: routes.forms.profileSettings,
-  },
-  {
-    name: 'Activity Log',
-    href: '#',
-  },
+  // {
+  //   name: 'Account Settings',
+  //   href: routes.forms.profileSettings,
+  // },
+  // {
+  //   name: 'Activity Log',
+  //   href: '#',
+  // },
 ];
 
 function DropdownMenu() {
@@ -88,9 +88,9 @@ function DropdownMenu() {
         <Avatar src="/avatar.webp" name="Albert Flores" />
         <div className="ms-3">
           <Title as="h6" className="font-semibold">
-            Albert Flores
+           ليان الأحمدي
           </Title>
-          <Text className="text-gray-600">flores@doe.io</Text>
+          <Text className="text-gray-600">layan@doe.io</Text>
         </div>
       </div>
       <div className="grid px-3.5 py-3.5 font-medium text-gray-700">
@@ -110,7 +110,7 @@ function DropdownMenu() {
           variant="text"
           onClick={() => signOut()}
         >
-          Sign Out
+         تسجيل خروج
         </Button>
       </div>
     </div>

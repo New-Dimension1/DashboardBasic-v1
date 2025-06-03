@@ -24,7 +24,7 @@ export default function FormSummary({
 }: FormSummaryProps) {
   const { step } = useStepperTwo();
   return (
-    <div className={cn('mb-6 md:mb-10', className)}>
+    <div className={cn('mb-6 md:mb-10', className)} dir='rtl'>
       <Flex className="flex-wrap-reverse justify-between gap-x-5 gap-y-2 md:flex-nowrap">
         <Title as="h3" className={cn('font-inter font-medium', titleClassName)}>
           {title}
@@ -33,7 +33,7 @@ export default function FormSummary({
           as="span"
           className="w-full text-nowrap font-medium text-gray-500 md:w-auto"
         >
-          Step {step + 1} of {stepOneTotalSteps - 1}
+          الخطوة {step + 1} من {stepOneTotalSteps - 1}
         </Text>
       </Flex>
       <Text

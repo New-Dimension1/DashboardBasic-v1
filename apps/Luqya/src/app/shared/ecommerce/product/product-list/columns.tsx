@@ -16,74 +16,25 @@ import { ActionIcon, Checkbox, Flex, Text, Tooltip } from 'rizzui';
 const columnHelper = createColumnHelper<ProductType>();
 
 export const productsListColumns = [
-  columnHelper.display({
-    id: 'select',
-    size: 50,
-    header: ({ table }) => (
-      <Checkbox
-        className="ps-3.5"
-        aria-label="Select all rows"
-        checked={table.getIsAllPageRowsSelected()}
-        onChange={() => table.toggleAllPageRowsSelected()}
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        className="ps-3.5"
-        aria-label="Select row"
-        checked={row.getIsSelected()}
-        onChange={() => row.toggleSelected()}
-      />
-    ),
-  }),
   columnHelper.accessor('name', {
     id: 'name',
-    size: 300,
-    header: 'Product',
+    size: 800,
+    header: 'اسم المجموعة',
     enableSorting: false,
     cell: ({ row }) => (
-      <AvatarCard
-        src={row.original.image}
-        name={row.original.name}
-        description={row.original.category}
-        avatarProps={{
-          name: row.original.name,
-          size: 'lg',
-          className: 'rounded-lg',
-        }}
-      />
+      <Text className="text-base ">{row.original.name}</Text>
     ),
   }),
   columnHelper.display({
     id: 'sku',
     size: 150,
-    header: 'SKU',
-    cell: ({ row }) => <Text className="text-sm">SKU-{row.original.sku}</Text>,
-  }),
-  columnHelper.accessor('stock', {
-    id: 'stock',
-    size: 200,
-    header: 'Stock',
-    cell: ({ row }) => getStockStatus(row.original.stock),
-  }),
-  columnHelper.accessor('price', {
-    id: 'price',
-    size: 150,
-    header: 'Price',
-    cell: ({ row }) => (
-      <Text className="font-medium text-gray-700">${row.original.price}</Text>
-    ),
-  }),
-  columnHelper.display({
-    id: 'rating',
-    size: 200,
-    header: 'Rating',
-    cell: ({ row }) => getRatings(row.original.rating),
+    header: 'عدد الأعضاء',
+    cell: ({ row }) => <Text className="text-sm">{row.original.sku}</Text>,
   }),
   columnHelper.accessor('status', {
     id: 'status',
-    size: 120,
-    header: 'Status',
+    size: 150,
+    header: 'الحالة',
     enableSorting: false,
     cell: ({ row }) => getStatusBadge(row.original.status),
   }),
@@ -99,7 +50,7 @@ export const productsListColumns = [
       <Flex align="center" justify="end" gap="3" className="pe-4">
         <Tooltip
           size="sm"
-          content={'Edit Product'}
+          content={'تعديل المجموعة'}
           placement="top"
           color="invert"
         >
@@ -108,15 +59,15 @@ export const productsListColumns = [
               as="span"
               size="sm"
               variant="outline"
-              aria-label={'Edit Product'}
+              aria-label={'تعديل المجموعة'}
             >
               <PencilIcon className="h-4 w-4" />
             </ActionIcon>
           </Link>
         </Tooltip>
-        <Tooltip
+        {/* <Tooltip
           size="sm"
-          content={'View Product'}
+          content={'تفاصيل المجموعة'}
           placement="top"
           color="invert"
         >
@@ -125,15 +76,15 @@ export const productsListColumns = [
               as="span"
               size="sm"
               variant="outline"
-              aria-label={'View Product'}
+              aria-label={'تفاصيل المجموعة'}
             >
               <EyeIcon className="h-4 w-4" />
             </ActionIcon>
           </Link>
-        </Tooltip>
+        </Tooltip> */}
         <DeletePopover
-          title={`Delete the product`}
-          description={`Are you sure you want to delete this #${row.original.id} product?`}
+          title={`حذف المجموعة`}
+          description={`هل متأكد تريد هذف هذه  #${row.original.id} المجموعة ؟`}
           onDelete={() =>
             meta?.handleDeleteRow && meta?.handleDeleteRow(row.original)
           }

@@ -168,12 +168,12 @@ export const categoryOption = [
 // Type option
 export const typeOption = [
   {
-    value: 'digital product',
-    label: 'Digital Product',
+    value: 'نشطة',
+    label: 'نشطة',
   },
   {
-    value: 'physical product',
-    label: 'Physical Product',
+    value: 'غير نشطة',
+    label: 'غير نشطة',
   },
 ];
 

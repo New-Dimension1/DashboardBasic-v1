@@ -6,6 +6,7 @@ import cn from '@core/utils/class-names';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import welcomeImg from '@public/image.png';
 import {
   PiArrowLineDownBold,
   PiFile,
@@ -18,8 +19,11 @@ import {
   PiXBold,
 } from 'react-icons/pi';
 import { ActionIcon, Button, Text, Title } from 'rizzui';
+import Link from 'next/link';
 
 type AcceptedFiles = 'img' | 'pdf' | 'csv' | 'imgAndPdf' | 'all';
+
+const TEMPLATE_URL = '/templates/empty-template.csv';
 
 export default function FileUpload({
   label = 'Upload Files',
@@ -52,6 +56,37 @@ export default function FileUpload({
         </ActionIcon>
       </div>
 
+      {/* زر تحميل التمبليت */}
+      <div className="mb-4 flex justify-end">
+        <Link  href={TEMPLATE_URL} download     className="w-full @md:w-auto">
+           <Button
+         
+          
+          rel="noopener noreferrer"
+          variant="outline"
+          className="w-full @md:w-auto"
+        >
+          <PiArrowLineDownBold className="me-1.5 h-[17px] w-[17px]" />
+          تحميل ملف فارغ (Template)
+               </Button>
+        </Link>
+     
+   
+      </div>
+
+      {/* صورة توضيحية لشكل الملف */}
+      <div className="mb-6">
+        <Text className="mb-2">مثال على المحتوى الصحيح داخل الملف:</Text>
+        <Image
+          src={welcomeImg}
+          alt="مثال لمحتوى ملف CSV"
+          width={600}
+          height={300}
+          className="rounded border border-gray-300 w-full"
+        />
+      </div>
+
+      {/* مكون رفع الملفات */}
       <FileInput
         accept={accept}
         multiple={multiple}
@@ -108,13 +143,12 @@ export const FileInput = ({
   function handleFileUpload() {
     if (files.length) {
       console.log('uploaded files:', files);
-      toast.success(<Text as="b">File successfully added</Text>);
-
+      toast.success(<Text as="b">تمت إضافة الملف بنجاح</Text>);
       setTimeout(() => {
         closeModal();
       }, 200);
     } else {
-      toast.error(<Text as="b">Please drop your file</Text>);
+      toast.error(<Text as="b">يرجى رفع الملف أولًا</Text>);
     }
   }
 
@@ -130,7 +164,7 @@ export const FileInput = ({
       />
 
       {files.length > 1 ? (
-        <Text className="mb-2 text-gray-500">{files.length} files</Text>
+        <Text className="mb-2 text-gray-500">{files.length} ملفات</Text>
       ) : null}
 
       {files.length > 0 && (
@@ -170,14 +204,15 @@ export const FileInput = ({
           </div>
         </div>
       )}
+
       <div className="mt-4 flex justify-end gap-3">
-        <Button
+        {/* <Button
           variant="outline"
           className={cn(!files.length && 'hidden', 'w-full')}
           onClick={() => setFiles([])}
         >
           Reset
-        </Button>
+        </Button> */}
         <Button className="w-full" onClick={() => handleFileUpload()}>
           <PiArrowLineDownBold className="me-1.5 h-[17px] w-[17px]" />
           {btnLabel}

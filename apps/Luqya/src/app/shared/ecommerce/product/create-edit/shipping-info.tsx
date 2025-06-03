@@ -8,7 +8,7 @@ import FormGroup from '@/app/shared/form-group';
 import { locationShipping } from '@/app/shared/ecommerce/product/create-edit/form-utils';
 import TrashIcon from '@core/components/icons/trash';
 import { PiPlusBold } from 'react-icons/pi';
-
+import { PhoneNumber } from '@core/ui/phone-input';
 export default function ShippingInfo({ className }: { className?: string }) {
   const {
     control,
@@ -27,61 +27,38 @@ export default function ShippingInfo({ className }: { className?: string }) {
   );
 
   return (
-    <FormGroup
-      title="Shipping"
-      description="Add your shipping info here"
-      className={cn(className)}
-    >
-      <Controller
-        name="freeShipping"
-        control={control}
-        render={({ field: { value, onChange } }) => (
-          <Switch
-            label="Free Shipping"
-            className="col-span-full"
-            value={value}
-            checked={value}
-            onChange={onChange}
-          />
-        )}
-      />
-
-      <Input
-        label="Shipping Price"
-        placeholder="150.00"
-        {...register('shippingPrice')}
-        error={errors.shippingPrice?.message as string}
-        prefix={'$'}
-        type="number"
-      />
-      <Controller
-        name="locationBasedShipping"
-        control={control}
-        render={({ field: { value, onChange } }) => (
-          <Switch
-            label="Location Based Shipping"
-            className="col-span-full"
-            value={value}
-            checked={value}
-            onChange={onChange}
-          />
-        )}
-      />
+   <FormGroup
+  title='أعضاء المجموعة'
+  description="أضف أسماء وأرقام الأشخاص الذين ستُرسل إليهم الدعوة"
+  className={cn(className)}
+>
 
       {fields.map((item, index) => (
         <div key={item.id} className="col-span-full flex gap-4 xl:gap-7">
           <Input
-            label="Location Name"
-            placeholder="location name"
+            label="الاسم"
+            placeholder="محمد خالد"
             className="flex-grow"
             {...register(`locationShipping.${index}.name`)}
           />
-          <Input
-            label="Shipping Charge"
-            placeholder="150.00"
-            className="flex-grow"
-            {...register(`locationShipping.${index}.value`)}
-          />
+      
+           <Controller
+  name={`locationShipping.${index}.phone`}
+  control={control}
+  render={({ field: { value, onChange } }) => (
+    <PhoneNumber
+      label="رقم الجوال"
+      country="sa"
+      value={value}
+      onChange={onChange}
+      isValid={(value) => value.length === 16}
+      inputProps={{ maxLength: 16 }}
+      className="rtl:[&>.selected-flag]:left-0 flex-grow"
+      inputClassName="rtl:pl-12"
+      buttonClassName="rtl:[&>.selected-flag]:left-2 rtl:[&>.selected-flag_.arrow]:-left-6"
+    />
+  )}
+/>
           {fields.length > 1 && (
             <ActionIcon
               onClick={() => remove(index)}
@@ -98,7 +75,7 @@ export default function ShippingInfo({ className }: { className?: string }) {
         variant="outline"
         className="col-span-full ml-auto w-auto"
       >
-        <PiPlusBold className="me-2 h-4 w-4" strokeWidth={2} /> Add Item
+        <PiPlusBold className="me-2 h-4 w-4" strokeWidth={2} /> إضافة عضو
       </Button>
     </FormGroup>
   );

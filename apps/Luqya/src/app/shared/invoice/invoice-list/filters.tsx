@@ -37,7 +37,7 @@ export default function Filters<TData extends Record<string, any>>({
       <Flex align="center" className="w-auto flex-wrap">
         <Input
           type="search"
-          placeholder="Search by customer name..."
+          placeholder="ابحث عن .."
           value={table.getState().globalFilter ?? ''}
           onClear={() => table.setGlobalFilter('')}
           onChange={(e) => table.setGlobalFilter(e.target.value)}
@@ -99,15 +99,11 @@ function FilterElements<T extends Record<string, any>>({
     table.getState().globalFilter || table.getState().columnFilters.length > 0;
   return (
     <>
-      <PriceField
-        value={priceFieldValue}
-        onChange={(v) => table.getColumn('amount')?.setFilterValue(v)}
-      />
       <DateFiled
         selectsRange
         dateFormat={'dd-MMM-yyyy'}
         className="w-full"
-        placeholderText="Select created date"
+        placeholderText="تاريخ إنشاء الدعوة"
         endDate={getDateRangeStateValues(createdDate[1])!}
         selected={getDateRangeStateValues(createdDate[0])}
         startDate={getDateRangeStateValues(createdDate[0])!}
@@ -121,7 +117,7 @@ function FilterElements<T extends Record<string, any>>({
         selectsRange
         dateFormat={'dd-MMM-yyyy'}
         className="w-full"
-        placeholderText="Select due date"
+        placeholderText="تاريخ الدعوة"
         endDate={getDateRangeStateValues(dueDate[1])!}
         selected={getDateRangeStateValues(dueDate[0])}
         startDate={getDateRangeStateValues(dueDate[0])!}
@@ -156,7 +152,7 @@ function FilterElements<T extends Record<string, any>>({
           variant="flat"
           className="h-9 bg-gray-200/70"
         >
-          <PiTrashDuotone className="me-1.5 size-[17px]" /> Clear
+          <PiTrashDuotone className="me-1.5 size-[17px]" /> مسح
         </Button>
       )}
     </>

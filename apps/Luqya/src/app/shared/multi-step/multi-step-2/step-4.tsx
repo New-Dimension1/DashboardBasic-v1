@@ -43,7 +43,7 @@ export default function StepTwo() {
   return (
     <>
       <FormSummary
-        title="Some Basic Features"
+        title="الإرسال"
         description="You only need to provide this information once, during your first listing."
       />
       <form

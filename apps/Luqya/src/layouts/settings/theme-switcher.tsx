@@ -40,7 +40,7 @@ export default function ThemeSwitcher() {
   }, [theme, colorPresetName]);
 
   return (
-    <DrawerBlock title="Appearance">
+    <DrawerBlock title="المظهر">
       <RadioGroup
         value={theme ?? siteConfig.mode}
         setValue={(selectedTheme: any) => {
@@ -49,22 +49,25 @@ export default function ThemeSwitcher() {
         className="grid grid-cols-2 gap-4"
       >
         {themeOptions.map((item) => (
-          <RadioBox
-            key={item}
-            value={item}
-            className="className h-auto"
-            contentClassName="p-0 [&_.radio-active]:ring-primary/0 peer-checked:ring-0 border-0 ring-0 peer-checked:border-0 peer-checked:[&_.radio-active]:ring-primary/100 [&_.radio-active]:ring-2 peer-checked:text-primary"
-          >
-            <span className="radio-active mb-3 inline-flex rounded-lg ring-offset-4 ring-offset-background dark:ring-offset-gray-100">
-              {item === 'light' ? (
-                <LightMode aria-label="Light Mode" className="h-full w-full" />
-              ) : (
-                <DarkMode aria-label="Dark Mode" className="h-full w-full" />
-              )}
-            </span>
-            <span className="inline-block w-full text-center">{item}</span>
-          </RadioBox>
-        ))}
+  <RadioBox
+    key={item}
+    value={item}
+    className="className h-auto"
+    contentClassName="p-0 [&_.radio-active]:ring-primary/0 peer-checked:ring-0 border-0 ring-0 peer-checked:border-0 peer-checked:[&_.radio-active]:ring-primary/100 [&_.radio-active]:ring-2 peer-checked:text-primary"
+  >
+    <span className="radio-active mb-3 inline-flex rounded-lg ring-offset-4 ring-offset-background dark:ring-offset-gray-100">
+      {item === 'light' ? (
+        <LightMode aria-label="Light Mode" className="h-full w-full" />
+      ) : (
+        <DarkMode aria-label="Dark Mode" className="h-full w-full" />
+      )}
+    </span>
+    <span className="inline-block w-full text-center">
+      {item === 'light' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+    </span>
+  </RadioBox>
+))}
+
       </RadioGroup>
     </DrawerBlock>
   );

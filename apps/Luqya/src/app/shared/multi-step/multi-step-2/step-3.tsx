@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from 'react'
 import {
   formDataAtom,
   useStepperTwo,
@@ -12,23 +12,12 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAtom } from 'jotai';
 import dynamic from 'next/dynamic';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { FieldError, Input, Radio, RadioGroup, Select, Text } from 'rizzui';
+import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { FieldError, Input, Radio, RadioGroup, MultiSelect, Text } from 'rizzui';
 
 const QuillEditor = dynamic(() => import('@core/ui/quill-editor'), {
   ssr: false,
 });
-
-const propertyTypes = [
-  {
-    label: 'Personal',
-    value: 'personal',
-  },
-  {
-    label: 'Shared',
-    value: 'shared',
-  },
-];
 
 const constructionStatus = [
   {
@@ -44,6 +33,7 @@ const constructionStatus = [
 export default function StepTwo() {
   const { step, gotoNextStep } = useStepperTwo();
   const [formData, setFormData] = useAtom(formDataAtom);
+  const [valueGroup, setValueGroup] = useState<string[]>([]);
 
   const {
     control,
@@ -58,9 +48,15 @@ export default function StepTwo() {
       constructionStatus: formData.constructionStatus,
       productDescription: formData.productDescription,
       propertyName: formData.propertyName,
-      propertyFor: formData.propertyFor,
+    propertyFor: formData.propertyFor || 'من المجموعات',  
       propertyType: formData.propertyType,
     },
+  });
+
+  const selectedType = useWatch({
+    control,
+    name: 'propertyFor',
+      defaultValue: 'من المجموعات',
   });
 
   const onSubmit: SubmitHandler<BasicInformationSchemaType> = (data) => {
@@ -75,8 +71,8 @@ export default function StepTwo() {
   return (
     <>
       <FormSummary
-        title="Basic Information"
-        description="You only need to provide this information once, during your first listing."
+        title="المدعويين - تحديد المدعويين "
+        description="اختر طريقة إضافة المدعوين: يدويًا أو من مجموعات قمت بإضافتها مسبقًا."
       />
       <div className="col-span-full flex items-center justify-center @5xl:col-span-7">
         <form
@@ -86,23 +82,20 @@ export default function StepTwo() {
         >
           <div className="grid gap-6">
             <div className="grid gap-4">
-              <Text className="font-semibold text-gray-900">Property For</Text>
+              <Text className="font-semibold text-gray-900">المدعووين</Text>
               <Controller
                 name="propertyFor"
                 control={control}
-                render={({ field: { value, onChange } }) => {
-                  console.log('value', value);
-                  return (
-                    <RadioGroup
-                      value={value}
-                      setValue={onChange}
-                      className="flex gap-4"
-                    >
-                      <Radio label="Rent" value="rent" name="type" />
-                      <Radio label="Sell" value="sell" name="type" />
-                    </RadioGroup>
-                  );
-                }}
+                render={({ field: { value, onChange } }) => (
+                  <RadioGroup
+                    value={value}
+                    setValue={onChange}
+                    className="flex gap-4"
+                  >
+                    <Radio label="يدوي" value="يدوي" name="type" />
+                    <Radio label="من المجموعات" value="من المجموعات" name="type" />
+                  </RadioGroup>
+                )}
               />
               {errors.propertyFor && (
                 <FieldError
@@ -111,90 +104,53 @@ export default function StepTwo() {
                 />
               )}
             </div>
-            <Input
-              label="Property Name"
-              labelClassName="font-semibold text-gray-900"
-              placeholder="property name..."
-              {...register('propertyName')}
-              error={errors.propertyName?.message}
-              size="lg"
-            />
-            <Controller
-              control={control}
-              name="propertyType"
-              render={({ field: { value, onChange } }) => (
-                <Select
-                  label="Property Type"
-                  labelClassName="font-semibold text-gray-900"
-                  dropdownClassName="!z-10 h-auto"
-                  inPortal={true}
-                  placeholder="property type..."
-                  options={propertyTypes}
-                  onChange={onChange}
-                  value={value}
-                  getOptionValue={(option) => option.value}
-                  displayValue={(selected) =>
-                    propertyTypes?.find((r) => r.value === selected)?.label ??
-                    ''
-                  }
-                  error={errors?.propertyType?.message as string}
-                  size="lg"
+
+            {/* MultiSelect إذا كانت القيمة "من المجموعات" */}
+            {selectedType === 'من المجموعات' && (
+              <Controller
+                control={control}
+                name="constructionStatus"
+                render={({ field: { value = [], onChange } }) => (
+                  <MultiSelect
+                    label="المجموعات"
+                    labelClassName="font-semibold text-gray-900"
+                    dropdownClassName="!z-10 h-auto"
+                    inPortal={true}
+                    placeholder="قم بختيار المجموعات التي ترغب بارسال الدعوات لهم"
+                    options={constructionStatus}
+                    multiple
+                       value={valueGroup}
+      onChange={setValueGroup}
+                    hideSelectedOptions={true}
+                    error={errors?.constructionStatus?.message as string}
+                    size="lg"
+                  />
+                )}
+              />
+            )}
+
+            {/* QuillEditor إذا كانت القيمة "يدوي" */}
+            {selectedType === 'يدوي' && (
+              <>
+                <Controller
+                  control={control}
+                  name="productDescription"
+                  render={({ field: { onChange, value } }) => (
+                    <QuillEditor
+                      value={value}
+                      labelClassName="font-semibold text-gray-900"
+                      label="قم باضافة الأرقام يدويا"
+                      onChange={onChange}
+                      className="[&_.ql-editor]:min-h-[120px]"
+                      error={errors?.productDescription?.message as string}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Input
-              label="City"
-              labelClassName="font-semibold text-gray-900"
-              placeholder="city name..."
-              {...register('city')}
-              error={errors.city?.message}
-              size="lg"
-            />
-            <Input
-              label="Address"
-              labelClassName="font-semibold text-gray-900"
-              placeholder="address line 1..."
-              {...register('address')}
-              error={errors.address?.message}
-              size="lg"
-            />
-            <Controller
-              control={control}
-              name="constructionStatus"
-              render={({ field: { value, onChange } }) => (
-                <Select
-                  label="Construction Status"
-                  labelClassName="font-semibold text-gray-900"
-                  dropdownClassName="!z-10 h-auto"
-                  inPortal={true}
-                  placeholder="construction status..."
-                  options={constructionStatus}
-                  onChange={onChange}
-                  value={value}
-                  getOptionValue={(option) => option.value}
-                  displayValue={(selected) =>
-                    constructionStatus?.find((r) => r.value === selected)
-                      ?.label ?? ''
-                  }
-                  error={errors?.constructionStatus?.message as string}
-                  size="lg"
-                />
-              )}
-            />
-            <Controller
-              control={control}
-              name="productDescription"
-              render={({ field: { onChange, value } }) => (
-                <QuillEditor
-                  value={value}
-                  labelClassName="font-semibold text-gray-900"
-                  label="Property Description"
-                  onChange={onChange}
-                  className="[&_.ql-editor]:min-h-[120px]"
-                  error={errors?.productDescription?.message as string}
-                />
-              )}
-            />
+                <Text className="font-semibold text-red-dark">
+                  كل رقم في سطر منفصل بصيغة 05XXXXXXXX
+                </Text>
+              </>
+            )}
           </div>
         </form>
       </div>

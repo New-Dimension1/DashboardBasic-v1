@@ -30,14 +30,7 @@ import { LAYOUT_OPTIONS } from '@/config/enums';
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ProductSummary,
-  [formParts.media]: ProductMedia,
-  [formParts.pricingInventory]: PricingInventory,
-  [formParts.productIdentifiers]: ProductIdentifiers,
   [formParts.shipping]: ShippingInfo,
-  [formParts.seo]: ProductSeo,
-  [formParts.deliveryEvent]: DeliveryEvent,
-  [formParts.variantOptions]: ProductVariants,
-  [formParts.tagsAndCategory]: ProductTaxonomies,
 };
 
 interface IndexProps {
@@ -77,11 +70,11 @@ export default function CreateEditProduct({
           layout === LAYOUT_OPTIONS.BERYLLIUM && 'z-[999] 2xl:top-[72px]'
         )}
       />
-      <FormProvider {...methods}>
+      <FormProvider {...methods} >
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
           className={cn(
-            'relative z-[19] [&_label.block>span]:font-medium',
+            'relative z-[19] [&_label.block>span]:font-medium ',
             className
           )}
         >
@@ -98,7 +91,7 @@ export default function CreateEditProduct({
 
           <FormFooter
             isLoading={isLoading}
-            submitBtnText={slug ? 'Update Product' : 'Create Product'}
+            submitBtnText={slug ? 'تعديل مجموعة' : 'إنشاء مجموعة'}
           />
         </form>
       </FormProvider>

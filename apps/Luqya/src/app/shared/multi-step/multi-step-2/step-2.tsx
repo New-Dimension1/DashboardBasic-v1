@@ -19,21 +19,20 @@ import { AdvancedRadio, Flex, RadioGroup, Text, Title } from 'rizzui';
 const properties: {
   label: string;
   subLabel: string;
-  value: 'single' | 'multi';
-}[] = [
-    {
-      label: 'Single unit property',
-      subLabel:
-        'This kind of property is rented out as a single independent entity.',
-      value: 'single',
-    },
-    {
-      label: 'Multi unit property',
-      subLabel:
-        'This kind of property is divided into multiple independent entities.',
-      value: 'multi',
-    },
-  ];
+}[] =[
+  {
+    label: 'بدون انتظار الرد - دعوة عامة',
+    subLabel: 'يُرسل هذا النوع من الدعوات بهدف الإبلاغ فقط، ولا يُتوقع من المستلم الرد أو التأكيد.',
+  },
+  {
+    label: 'الرد بـ (1) للحضور و (2) للاعتذار',
+    subLabel: 'يتيح هذا النوع للمستلمين الرد السريع عبر كتابة رقم (1) لتأكيد الحضور أو (2) للاعتذار.',
+  },
+  {
+    label: 'الدخول على رابط لتسجيل الرد',
+    subLabel: 'يتضمن هذا النوع رابطًا إلكترونيًا يمكن من خلاله تعبئة نموذج لتأكيد الحضور وتفاصيل إضافية.',
+  },
+];
 
 export default function StepOne() {
   const { step, gotoNextStep } = useStepperTwo();
@@ -63,7 +62,7 @@ export default function StepOne() {
 
   return (
     <>
-      <FormSummary title="Start a new listing" />
+      <FormSummary title="الرد - طريقة استلام الرد" />
       <form id={`rhf-${step.toString()}`} onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="listingUnit"
@@ -76,8 +75,8 @@ export default function StepOne() {
             >
               {properties.map((property) => (
                 <AdvancedRadio
-                  key={property.value}
-                  value={property.value}
+                  key={property.label}
+                  value={property.label}
                   inputClassName="[&~span]:border-0 [&~span]:ring-1 [&~span]:ring-gray-200 [&~span:hover]:ring-primary [&:checked~span:hover]:ring-primary [&:checked~span]:border-1 [&:checked~.rizzui-advanced-radio]:ring-2 [&~span_.icon]:opacity-0 [&:checked~span_.icon]:opacity-100"
                 >
                   <Flex

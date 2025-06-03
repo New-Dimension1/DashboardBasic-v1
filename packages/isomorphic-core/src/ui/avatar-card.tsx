@@ -22,7 +22,7 @@ export default function AvatarCard({
 }: AvatarCardProps) {
   return (
     <figure className={cn("flex items-center gap-3", className)}>
-      <Avatar name={name} src={src} {...avatarProps} />
+      <Avatar name={name} src={src} rounded="md" {...avatarProps} />
       <figcaption className="grid gap-0.5">
         <Text
           className={cn(

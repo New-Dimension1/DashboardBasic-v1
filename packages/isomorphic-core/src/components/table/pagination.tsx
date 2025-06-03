@@ -44,7 +44,7 @@ export default function TablePagination<TData extends Record<string, any>>({
     >
       <Flex align="center" className="w-auto shrink-0">
         <Text className="hidden font-normal text-gray-600 @md:block">
-          Rows per page
+      عدد الصفوف في الصفحة
         </Text>
         <Select
           size="sm"
@@ -69,56 +69,63 @@ export default function TablePagination<TData extends Record<string, any>>({
         </Box>
       )}
       <Flex justify="end" align="center">
-        <Text className="hidden font-normal text-gray-600 @3xl:block">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount().toLocaleString()}
-        </Text>
-        <Grid gap="2" columns="4">
-          <ActionIcon
-            size="sm"
-            rounded="lg"
-            variant="outline"
-            aria-label="Go to first page"
-            onClick={() => table.firstPage()}
-            disabled={!table.getCanPreviousPage()}
-            className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
-          >
-            <PiCaretDoubleLeftBold className="size-3.5" />
-          </ActionIcon>
-          <ActionIcon
-            size="sm"
-            rounded="lg"
-            variant="outline"
-            aria-label="Go to previous page"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-            className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
-          >
-            <PiCaretLeftBold className="size-3.5" />
-          </ActionIcon>
-          <ActionIcon
-            size="sm"
-            rounded="lg"
-            variant="outline"
-            aria-label="Go to next page"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-            className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
-          >
-            <PiCaretRightBold className="size-3.5" />
-          </ActionIcon>
-          <ActionIcon
-            size="sm"
-            rounded="lg"
-            variant="outline"
-            aria-label="Go to last page"
-            onClick={() => table.lastPage()}
-            disabled={!table.getCanNextPage()}
-            className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
-          >
-            <PiCaretDoubleRightBold className="size-3.5" />
-          </ActionIcon>
-        </Grid>
+     <Text className="hidden font-normal text-gray-600 @3xl:block">
+  الصفحة {table.getState().pagination.pageIndex + 1} من {table.getPageCount().toLocaleString()}
+</Text>
+      <Grid gap="2" columns="4">
+  {/* Go to last page (should be on the right in RTL) */}
+  <ActionIcon
+    size="sm"
+    rounded="lg"
+    variant="outline"
+    aria-label="Go to last page"
+    onClick={() => table.lastPage()}
+    disabled={!table.getCanNextPage()}
+    className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
+  >
+    <PiCaretDoubleRightBold className="size-3.5" />
+  </ActionIcon>
+
+  {/* Next page (to the left in RTL) */}
+  <ActionIcon
+    size="sm"
+    rounded="lg"
+    variant="outline"
+    aria-label="Go to next page"
+    onClick={() => table.nextPage()}
+    disabled={!table.getCanNextPage()}
+    className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
+  >
+    < PiCaretRightBold className="size-3.5" />
+  </ActionIcon>
+
+  {/* Previous page (to the right in RTL) */}
+  <ActionIcon
+    size="sm"
+    rounded="lg"
+    variant="outline"
+    aria-label="Go to previous page"
+    onClick={() => table.previousPage()}
+    disabled={!table.getCanPreviousPage()}
+    className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
+  >
+    <PiCaretLeftBold className="size-3.5 " />
+  </ActionIcon>
+
+  {/* Go to first page (should be on the left in RTL) */}
+  <ActionIcon
+    size="sm"
+    rounded="lg"
+    variant="outline"
+    aria-label="Go to first page"
+    onClick={() => table.firstPage()}
+    disabled={!table.getCanPreviousPage()}
+    className="text-gray-900 shadow-sm disabled:text-gray-400 disabled:shadow-none"
+  >
+    <PiCaretDoubleLeftBold className="size-3.5" />
+  </ActionIcon>
+</Grid>
+
       </Flex>
     </Flex>
   );

@@ -15,33 +15,14 @@ export const formParts = {
 
 export const menuItems = [
   {
-    label: 'Summary',
+    label: 'معلومات المجوعة',
     value: formParts.summary,
   },
   {
-    label: 'Images & Gallery',
-    value: formParts.media,
-  },
-  {
-    label: 'Pricing & Inventory',
-    value: formParts.pricingInventory,
-  },
-  {
-    label: 'Product Identifiers & Custom Fields',
-    value: formParts.productIdentifiers,
-  },
-  {
-    label: 'Shipping',
+    label: 'أعضاء المجموعة',
     value: formParts.shipping,
   },
-  {
-    label: 'SEO',
-    value: formParts.seo,
-  },
-  {
-    label: 'Variant Options',
-    value: formParts.variantOptions,
-  },
+
 ];
 
 interface FormNavProps {

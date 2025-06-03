@@ -9,31 +9,51 @@ import {
   startingTypeSchema,
   StartingTypeSchema,
 } from '@/validators/multistep-form-2.schema';
+import UploadZone from '@core/ui/file-upload/upload-zone';
 import ClipboardIcon from '@core/components/icons/clipboard';
 import ClipboardIconSuccess from '@core/components/icons/clipboard-success';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm,useWatch  } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { AdvancedRadio, Flex, RadioGroup, Title } from 'rizzui';
+import dynamic from 'next/dynamic';
+import {
+  AdvancedRadio,
+  Flex,
+  RadioGroup,
+  Title,
+  FieldError,
+  Input,
+  Radio,
+  Select,
+  Text,
+} from 'rizzui';
+const QuillEditor = dynamic(() => import('@core/ui/quill-editor'), {
+  ssr: false,
+});
 
 const startingTypes: {
   label: string;
-  value: 'new' | 'existing';
   icon: React.ReactNode;
+  type: string
 }[] = [
-    {
-      label: 'Create a new listing',
-      value: 'new',
-      icon: <ClipboardIcon className="size-8 shrink-0 text-gray-900" />,
-    },
-    {
-      label: 'Duplicate an existing listing',
-      value: 'existing',
-      icon: <ClipboardIconSuccess className="size-8 shrink-0 text-gray-900" />,
-    },
-  ];
+  {
+    label: 'نص فقط',
+    icon: <ClipboardIcon className="size-8 shrink-0 text-gray-900" />,
+    type: "NO"
+  },
+  {
+    label: 'نص مع صورة',
+    icon: <ClipboardIconSuccess className="size-8 shrink-0 text-gray-900" />,
+        type: "yes"
+  },
+  {
+    label: 'نص مع فيديو',
+    icon: <ClipboardIconSuccess className="size-8 shrink-0 text-gray-900" />,
+      type: "yes"
+  },
+];
 
 export default function StepOne() {
   const { step, gotoNextStep } = useStepperTwo();
@@ -43,6 +63,8 @@ export default function StepOne() {
     control,
     formState: { errors },
     handleSubmit,
+     getValues,
+    setValue,
   } = useForm<StartingTypeSchema>({
     resolver: zodResolver(startingTypeSchema),
     defaultValues: {
@@ -59,43 +81,88 @@ export default function StepOne() {
   const onSubmit = () => {
     gotoNextStep();
   };
+ const selectedLabel = useWatch({ control, name: 'startingType' });
+
+  const selectedTypeObj = startingTypes.find(
+    (type) => type.label === selectedLabel
+  );
 
   return (
     <>
-      <FormSummary title="Start a new listing" />
-      <form id={`rhf-${step.toString()}`} onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="startingType"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <RadioGroup
-              value={value}
-              setValue={onChange}
-              className="grid grid-cols-1 gap-5"
-            >
-              {startingTypes.map((type) => (
-                <AdvancedRadio
-                  key={type.value}
-                  value={type.value}
-                  inputClassName="[&~span]:border-0 [&~span]:ring-1 [&~span]:ring-gray-200 [&~span:hover]:ring-primary [&:checked~span:hover]:ring-primary [&:checked~span]:border-1 [&:checked~.rizzui-advanced-radio]:ring-2 [&~span_.icon]:opacity-0 [&:checked~span_.icon]:opacity-100 [&~span]:space-y-2"
+      <FormSummary title="محتوى - تجهيز محتوى الدعوة" />
+      <form id={`rhf-${step.toString()}`} onSubmit={handleSubmit(onSubmit)} >
+        <div className="grid gap-4">
+          <Input
+            label="عنوان الدعوة"
+            labelClassName="font-semibold text-gray-900"
+            placeholder="حفل تخرج منيرة"
+            // {...register('startingType')}
+            helperText="لمعرفة الدعوة ولا يتم إرسالة"
+            error={errors.startingType?.message}
+            size="lg"
+          />
+
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: { onChange, value } }) => (
+              <QuillEditor
+                value={value}
+                labelClassName="font-semibold text-gray-900"
+                label="محتوى الدعوة"
+                onChange={onChange}
+                className="[&_.ql-editor]:min-h-[120px]"
+                error={errors?.name?.message as string}
+              />
+            )}
+          />
+          <Controller
+            name="startingType"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <>
+                <Text className="font-semibold text-gray-900">نوع الرسالة</Text>
+                <RadioGroup
+                  value={value}
+                  setValue={onChange}
+                  className="grid grid-cols-3 gap-5"
                 >
-                  <Flex
-                    align="center"
-                    className="min-h-auto gap-4 px-0 py-5 md:min-h-[104px] md:gap-5 md:px-8"
-                  >
-                    {type.icon}
-                    <Title
-                      as="h4"
-                      className="font-inter text-lg font-medium md:text-xl"
+                  {startingTypes.map((type) => (
+                    <AdvancedRadio
+                      key={type.label}
+                      value={type.label}
+                      inputClassName="[&~span]:border-0 [&~span]:ring-1 [&~span]:ring-gray-200 [&~span:hover]:ring-primary [&:checked~span:hover]:ring-primary [&:checked~span]:border-1 [&:checked~.rizzui-advanced-radio]:ring-2 [&~span_.icon]:opacity-0 [&:checked~span_.icon]:opacity-100 [&~span]:space-y-2"
                     >
-                      {type.label}
-                    </Title>
-                  </Flex>
-                </AdvancedRadio>
-              ))}
-            </RadioGroup>
+                      <div className="min-h-auto gap-4 px-0 py-5 md:min-h-[104px] md:gap-5 md:px-8">
+                        {type.icon}
+                        <Title
+                          as="h4"
+                          className="font-inter text-lg font-medium md:text-xl"
+                        >
+                          {type.label}
+                        </Title>
+                      </div>
+                    </AdvancedRadio>
+                  ))}
+                </RadioGroup>
+              </>
+            )}
+          />
+
+
+    {selectedTypeObj?.type === 'yes' && (
+            <>
+              <Text className="font-semibold text-gray-900">
+                الفيديو أو الصورة
+              </Text>
+              <UploadZone
+                name="photos"
+                getValues={getValues}
+                setValue={setValue}
+              />
+            </>
           )}
-        />
+        </div>
       </form>
     </>
   );

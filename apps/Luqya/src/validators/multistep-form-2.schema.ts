@@ -5,6 +5,7 @@ import { fileSchema } from './common-rules';
 // step 1
 export const startingTypeSchema = z.object({
   startingType: z.string().nonempty(messages.startingTypeIsRequired),
+  name:z.string().nonempty(messages.startingTypeIsRequired),
 });
 
 export type StartingTypeSchema = z.infer<typeof startingTypeSchema>;
@@ -18,13 +19,14 @@ export type ListingUnitSchema = z.infer<typeof listingUnitSchema>;
 
 // step 3
 export const basicInformationSchema = z.object({
-  propertyFor: z.string().min(1, messages.propertyForIsRequired),
-  propertyName: z.string().min(1, messages.propertyNameIsRequired),
-  propertyType: z.string().min(1, messages.propertyTypeIsRequired),
+  propertyFor: z.string().min(1, messages.propertyTypeIsRequired),
+  propertyName: z.string().optional(),
+  propertyType: z.string().optional(),
   city: z.string().optional(),
   address: z.string().optional(),
   constructionStatus: z.string().optional(),
   productDescription: z.string().optional(),
+   photos: z.array(fileSchema).optional(),
 });
 
 export type BasicInformationSchemaType = z.infer<typeof basicInformationSchema>;

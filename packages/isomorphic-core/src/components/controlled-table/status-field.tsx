@@ -4,7 +4,7 @@ import { Select, type SelectProps, type SelectOption } from "rizzui";
 import cn from "@core/utils/class-names";
 
 export default function StatusField({
-  placeholder = "Select status",
+  placeholder = "اختر الحالة",
   dropdownClassName,
   ...props
 }: SelectProps<SelectOption>) {

@@ -14,6 +14,7 @@ import { FileSchema } from '@/validators/common-rules';
 
 type FormDataType = {
   startingType: string;
+  name: string;
   listingUnit: string;
   propertyFor: string;
   propertyName: string;
@@ -34,6 +35,7 @@ type FormDataType = {
 
 export const initialFormData = {
   startingType: '',
+  name:'',
   listingUnit: '',
   propertyFor: '',
   propertyName: '',
@@ -62,8 +64,6 @@ export enum Step {
   StepTwo,
   StepThree,
   StepFour,
-  StepFive,
-  StepSix,
   StepSeven,
 }
 
@@ -100,8 +100,6 @@ const MAP_STEP_TO_COMPONENT = {
   [Step.StepTwo]: StepTwo,
   [Step.StepThree]: StepThree,
   [Step.StepFour]: StepFour,
-  [Step.StepFive]: StepFive,
-  [Step.StepSix]: StepSix,
   [Step.StepSeven]: Congratulations,
 };
 
@@ -114,7 +112,7 @@ export default function MultiStepFormTwo() {
   const Component = MAP_STEP_TO_COMPONENT[step];
 
   return (
-    <div className="mx-auto max-w-2xl rounded-[20px] bg-white p-5 shadow-roundedCard dark:bg-gray-0 md:p-8 lg:p-12">
+    <div dir='rtl' className="mx-auto max-w-2xl rounded-[20px]  bg-white p-5 shadow-roundedCard dark:bg-gray-0 md:p-8 lg:p-12">
       <Component />
       <Navigator />
     </div>

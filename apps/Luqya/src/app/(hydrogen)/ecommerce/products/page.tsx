@@ -7,24 +7,24 @@ import ProductsTable from '@/app/shared/ecommerce/product/product-list/table';
 import { productsData } from '@/data/products-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
-
+import ImportButton from '@/app/shared/import-button';
 export const metadata = {
-  ...metaObject('Products'),
+  ...metaObject('المجموعات'),
 };
 
 const pageHeader = {
-  title: 'Products',
+  title: 'المجموعات',
   breadcrumb: [
     {
-      href: routes.eCommerce.dashboard,
-      name: 'E-Commerce',
+      href: "/",
+      name: 'الرئيسية',
     },
     {
       href: routes.eCommerce.products,
-      name: 'Products',
+      name: 'المجموعات',
     },
     {
-      name: 'List',
+      name: 'قائمة المجموعات',
     },
   ],
 };
@@ -34,18 +34,19 @@ export default function ProductsPage() {
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
-          <ExportButton
+          {/* <ExportButton
             data={productsData}
             fileName="product_data"
             header="ID,Name,Category,Product Thumbnail,SKU,Stock,Price,Status,Rating"
-          />
+          /> */}
+          <ImportButton title={'استرداد ملف'}   />
           <Link
             href={routes.eCommerce.createProduct}
             className="w-full @lg:w-auto"
           >
             <Button as="span" className="w-full @lg:w-auto">
               <PiPlusBold className="me-1.5 h-[17px] w-[17px]" />
-              Add Product
+              إضافة مجموعة
             </Button>
           </Link>
         </div>

@@ -20,13 +20,13 @@ interface FooterProps {
 }
 
 function buttonLabel(formId?: number) {
-  if (formId === 5) {
-    return 'Submit';
+  if (formId === 3) {
+    return 'إرسال';
   }
-  if (formId === 6) {
-    return 'Back to Home';
+  if (formId === 3) {
+    return 'الرئيسية';
   }
-  return 'Next';
+  return 'التالي';
 }
 
 export default function Navigator({ isLoading, className }: FooterProps) {
@@ -44,7 +44,7 @@ export default function Navigator({ isLoading, className }: FooterProps) {
   }, [pathname, searchParams]);
 
   function buttonAttr() {
-    if (step === 6) {
+    if (step === 3) {
       return {
         onClick: () => push('/'),
       };
@@ -55,13 +55,14 @@ export default function Navigator({ isLoading, className }: FooterProps) {
   return (
     <div
       className={cn(
-        'flex items-center justify-between gap-3 pt-8 md:pt-12',
+        'flex items-center !justify-between gap-3 pt-8 md:pt-12',
         className
       )}
+
     >
-      {step > 0 && step < 6 && (
+      {step > 0 && step < 3 && (
         <Button size="lg" rounded="lg" variant="outline" onClick={gotoPrevStep}>
-          Back
+          السابق
         </Button>
       )}
       <Button
@@ -72,7 +73,7 @@ export default function Navigator({ isLoading, className }: FooterProps) {
         variant="solid"
         {...buttonAttr()}
         type={'submit'}
-        className="ml-auto"
+        className="mr-auto"
       >
         {buttonLabel(step)}
       </Button>

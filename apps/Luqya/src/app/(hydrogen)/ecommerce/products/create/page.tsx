@@ -7,22 +7,22 @@ import { Button } from 'rizzui/button';
 import { routes } from '@/config/routes';
 
 export const metadata = {
-  ...metaObject('Create Product'),
+  ...metaObject('إنشاء مجموعة'),
 };
 
 const pageHeader = {
-  title: 'Create Product',
+  title: 'إنشاء مجموعة',
   breadcrumb: [
-    {
-      href: routes.eCommerce.dashboard,
-      name: 'E-Commerce',
+  {
+      href: "/",
+      name: 'الرئيسية',
     },
     {
       href: routes.eCommerce.products,
-      name: 'Products',
+      name: 'المجموعات',
     },
     {
-      name: 'Create',
+      name: 'إنشاء مجموعة',
     },
   ],
 };
@@ -31,7 +31,7 @@ export default function CreateProductPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
-        <Link
+        {/* <Link
           href={routes.eCommerce.createProduct}
           className="mt-4 w-full @lg:mt-0 @lg:w-auto"
         >
@@ -39,7 +39,7 @@ export default function CreateProductPage() {
             <PiPlusBold className="me-1.5 h-[17px] w-[17px]" />
             Add Product
           </Button>
-        </Link>
+        </Link> */}
       </PageHeader>
 
       <CreateEditProduct />
