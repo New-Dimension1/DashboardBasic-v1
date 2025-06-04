@@ -44,61 +44,19 @@ export default function StepTwo() {
     <>
       <FormSummary
         title="الإرسال"
-        description="You only need to provide this information once, during your first listing."
+        description="تأكيد"
       />
       <form
         id={`rhf-${step.toString()}`}
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 gap-5"
+        className="grid grid-cols-1 gap-5 text-center"
       >
-        <Controller
-          name="bedrooms"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <div className="col-span-full flex w-full items-center justify-between gap-5 rounded-md border border-muted p-5 md:p-9">
-              <span className="text-lg font-medium text-gray-900 md:text-xl">
-                Bedrooms
-              </span>
-              <QuantityInput
-                defaultValue={value}
-                onChange={onChange}
-                error={errors.bedrooms?.message as string}
-              />
-            </div>
-          )}
-        />
-        <Controller
-          name="bathrooms"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <div className="col-span-full flex w-full items-center justify-between gap-5 rounded-md border border-muted p-5 md:p-9">
-              <span className="text-lg font-medium text-gray-900 md:text-xl">
-                Bathrooms
-              </span>
-              <QuantityInput
-                defaultValue={value}
-                onChange={onChange}
-                error={errors.bathrooms?.message as string}
-              />
-            </div>
-          )}
-        />
-        <Controller
-          name="guests"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <div className="col-span-full flex w-full items-center justify-between gap-5 rounded-md border border-muted p-5 md:p-9">
-              <span className="text-lg font-medium text-gray-900 md:text-xl">
-                Guests
-              </span>
-              <QuantityInput
-                defaultValue={value}
-                onChange={onChange}
-                error={errors.guests?.message as string}
-              />
-            </div>
-          )}
-        />
+        <h2 className="text-2xl @7xl:text-3xl @[113rem]:text-4xl">
+    كذا تمام، وصلتِ لآخر خطوة!
+          </h2>
+          <p className="mt-6 text-base">
+              خلصنا كل شي 🎉، حملنا صورة الدعوة وضفنا المدعوين. إذا ضغطتِ على "إرسال"، راح تنرسل الدعوة على طول.
+          </p>
       </form>
     </>
   );

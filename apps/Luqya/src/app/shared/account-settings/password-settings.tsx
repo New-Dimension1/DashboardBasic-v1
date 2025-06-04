@@ -13,19 +13,21 @@ import {
   PasswordFormTypes,
 } from '@/validators/password-settings.schema';
 
+// واجهة إعدادات كلمة المرور
 export default function PasswordSettingsView({
   settings,
 }: {
   settings?: PasswordFormTypes;
 }) {
-  const [isLoading, setLoading] = useState(false);
-  const [reset, setReset] = useState({});
+  const [isLoading, setLoading] = useState(false); // حالة تحميل الزر
+  const [reset, setReset] = useState({}); // حالة إعادة تعيين النموذج
 
+  // دالة إرسال النموذج
   const onSubmit: SubmitHandler<PasswordFormTypes> = (data) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      console.log('Password settings data ->', data);
+      console.log('بيانات إعدادات كلمة المرور ->', data);
       setReset({
         currentPassword: '',
         newPassword: '',
@@ -37,8 +39,8 @@ export default function PasswordSettingsView({
   return (
     <>
       <Form<PasswordFormTypes>
-        validationSchema={passwordFormSchema}
-        resetValues={reset}
+        validationSchema={passwordFormSchema} // التحقق من صحة البيانات
+        resetValues={reset} // إعادة تعيين القيم بعد الإرسال
         onSubmit={onSubmit}
         className="@container"
         useFormProps={{
@@ -51,25 +53,28 @@ export default function PasswordSettingsView({
         {({ register, control, formState: { errors }, getValues }) => {
           return (
             <>
+              {/* رأس الملف الشخصي */}
               <ProfileHeader
                 title="Olivia Rhye"
                 description="olivia@example.com"
               />
 
               <div className="mx-auto w-full max-w-screen-2xl">
+                {/* حقل كلمة المرور الحالية */}
                 <HorizontalFormBlockWrapper
-                  title="Current Password"
+                  title="كلمة المرور الحالية"
                   titleClassName="text-base font-medium"
                 >
                   <Password
                     {...register('currentPassword')}
-                    placeholder="Enter your password"
+                    placeholder="أدخل كلمة المرور الحالية"
                     error={errors.currentPassword?.message}
                   />
                 </HorizontalFormBlockWrapper>
 
+                {/* حقل كلمة المرور الجديدة */}
                 <HorizontalFormBlockWrapper
-                  title="New Password"
+                  title="كلمة المرور الجديدة"
                   titleClassName="text-base font-medium"
                 >
                   <Controller
@@ -77,10 +82,10 @@ export default function PasswordSettingsView({
                     name="newPassword"
                     render={({ field: { onChange, value } }) => (
                       <Password
-                        placeholder="Enter your password"
+                        placeholder="أدخل كلمة المرور الجديدة"
                         helperText={
                           getValues().newPassword.length < 8 &&
-                          'Your current password must be more than 8 characters'
+                          'يجب أن تكون كلمة المرور أكثر من 8 أحرف'
                         }
                         onChange={onChange}
                         error={errors.newPassword?.message}
@@ -89,8 +94,9 @@ export default function PasswordSettingsView({
                   />
                 </HorizontalFormBlockWrapper>
 
+                {/* تأكيد كلمة المرور الجديدة */}
                 <HorizontalFormBlockWrapper
-                  title="Confirm New Password"
+                  title="تأكيد كلمة المرور الجديدة"
                   titleClassName="text-base font-medium"
                 >
                   <Controller
@@ -98,7 +104,7 @@ export default function PasswordSettingsView({
                     name="confirmedPassword"
                     render={({ field: { onChange, value } }) => (
                       <Password
-                        placeholder="Enter your password"
+                        placeholder="أعد إدخال كلمة المرور الجديدة"
                         onChange={onChange}
                         error={errors.confirmedPassword?.message}
                       />
@@ -106,12 +112,13 @@ export default function PasswordSettingsView({
                   />
                 </HorizontalFormBlockWrapper>
 
+                {/* أزرار الإجراء */}
                 <div className="mt-6 flex w-auto items-center justify-end gap-3">
                   <Button type="button" variant="outline">
-                    Cancel
+                    إلغاء
                   </Button>
                   <Button type="submit" variant="solid" isLoading={isLoading}>
-                    Update Password
+                    تحديث كلمة المرور
                   </Button>
                 </div>
               </div>
@@ -119,24 +126,26 @@ export default function PasswordSettingsView({
           );
         }}
       </Form>
-      <LoggedDevices className="mt-10" />
+
+      {/* <LoggedDevices className="mt-10" /> */} {/* قائمة الأجهزة المسجلة الدخول (اختياري) */}
     </>
   );
 }
 
-// Logged devices
+// عرض الأجهزة المسجلة الدخول
 function LoggedDevices({ className }: { className?: string }) {
   return (
     <div className={cn('mx-auto w-full max-w-screen-2xl', className)}>
       <div className="border-b border-dashed border-muted">
         <Title as="h2" className="mb-3 text-xl font-bold text-gray-900">
-          Where you’re logged in
+          الأجهزة التي تم تسجيل الدخول منها
         </Title>
         <Text className="mb-6 text-sm text-gray-500">
-          We’ll alert you via olivia@untitledui.com if there is any unusual
-          activity on your account.
+          سيتم تنبيهك عبر البريد الإلكتروني olivia@untitledui.com إذا تم الكشف عن نشاط غير معتاد على حسابك.
         </Text>
       </div>
+
+      {/* جهاز نشط حالياً */}
       <div className="flex items-center gap-6 border-b border-dashed border-muted py-6">
         <PiDesktop className="h-7 w-7 text-gray-500" />
         <div>
@@ -151,22 +160,24 @@ function LoggedDevices({ className }: { className?: string }) {
               as="span"
               className="relative hidden rounded-md border border-muted py-1.5 pe-2.5 ps-5 text-xs font-semibold text-gray-900 before:absolute before:start-2.5 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full before:bg-green sm:block"
             >
-              Active Now
+              نشط الآن
             </Text>
           </div>
           <div className="flex items-center gap-2">
-            <Text className="text-sm text-gray-500">Melbourne, Australia</Text>
+            <Text className="text-sm text-gray-500">ملبورن، أستراليا</Text>
             <span className="h-1 w-1 rounded-full bg-gray-600" />
-            <Text className="text-sm text-gray-500">22 Jan at 4:20pm</Text>
+            <Text className="text-sm text-gray-500">22 يناير الساعة 4:20 مساءً</Text>
           </div>
           <Text
             as="span"
             className="relative mt-2 inline-block rounded-md border border-muted py-1.5 pe-2.5 ps-5 text-xs font-semibold text-gray-900 before:absolute before:start-2.5 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full before:bg-green sm:hidden"
           >
-            Active Now
+            نشط الآن
           </Text>
         </div>
       </div>
+
+      {/* جهاز غير نشط حالياً */}
       <div className="flex items-center gap-6 py-6">
         <PiDesktop className="h-7 w-7 text-gray-500" />
         <div>
@@ -177,9 +188,9 @@ function LoggedDevices({ className }: { className?: string }) {
             2020 Macbook Air M1
           </Title>
           <div className="flex items-center gap-2">
-            <Text className="text-sm text-gray-500">Melbourne, Australia</Text>
+            <Text className="text-sm text-gray-500">ملبورن، أستراليا</Text>
             <span className="h-1 w-1 rounded-full bg-gray-600" />
-            <Text className="text-sm text-gray-500">22 Jan at 4:20pm</Text>
+            <Text className="text-sm text-gray-500">22 يناير الساعة 4:20 مساءً</Text>
           </div>
         </div>
       </div>

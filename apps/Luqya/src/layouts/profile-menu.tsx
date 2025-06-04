@@ -69,7 +69,7 @@ function ProfileMenuPopover({ children }: React.PropsWithChildren<{}>) {
 const menuItems = [
   {
     name: 'الملف الشخصي',
-    href: routes.profile,
+    href: routes.forms.profileSettings,
   },
   // {
   //   name: 'Account Settings',

@@ -22,11 +22,11 @@ export default function Header({ className }: FooterProps) {
       <Link
         aria-label="Site Logo"
         href={'/'}
-        className="me-4 w-9 shrink-0 text-gray-800 hover:text-gray-900 md:w-[155px] lg:me-5 xl:block"
+        className="ml-auto w-9 shrink-0 text-gray-800 hover:text-gray-900 md:w-[155px] lg:me-5 xl:block"
       >
         <Logo iconOnly={isMobile} className="w-full" />
       </Link>
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <Button
           size="lg"
           rounded="lg"
@@ -35,7 +35,7 @@ export default function Header({ className }: FooterProps) {
         >
           Save & Exit
         </Button>
-      </div>
+      </div> */}
     </header>
   );
 }

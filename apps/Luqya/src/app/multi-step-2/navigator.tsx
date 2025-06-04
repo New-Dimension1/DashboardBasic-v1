@@ -23,7 +23,7 @@ function buttonLabel(formId?: number) {
   if (formId === 3) {
     return 'إرسال';
   }
-  if (formId === 3) {
+  if (formId === 4) {
     return 'الرئيسية';
   }
   return 'التالي';
@@ -44,7 +44,7 @@ export default function Navigator({ isLoading, className }: FooterProps) {
   }, [pathname, searchParams]);
 
   function buttonAttr() {
-    if (step === 3) {
+    if (step === 4) {
       return {
         onClick: () => push('/'),
       };

@@ -3,18 +3,14 @@ import PageHeader from '@/app/shared/page-header';
 import ProfileSettingsNav from '@/app/shared/account-settings/navigation';
 
 const pageHeader = {
-  title: 'Account Settings',
+  title: 'إعدادات الحساب',
   breadcrumb: [
     {
       href: '/',
-      name: 'Home',
+      name: 'الرئيسية',
     },
     {
-      href: routes.forms.profileSettings,
-      name: 'Form',
-    },
-    {
-      name: 'Account Settings',
+      name: 'إعدادات الحساب',
     },
   ],
 };

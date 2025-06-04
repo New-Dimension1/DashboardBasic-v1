@@ -28,7 +28,13 @@ import {
   Radio,
   Select,
   Text,
+  Textarea 
 } from 'rizzui';
+import {
+  PiTextAlignLeft,
+  PiImageDuotone,
+  PiVideoDuotone,
+} from 'react-icons/pi';
 const QuillEditor = dynamic(() => import('@core/ui/quill-editor'), {
   ssr: false,
 });
@@ -40,18 +46,18 @@ const startingTypes: {
 }[] = [
   {
     label: 'نص فقط',
-    icon: <ClipboardIcon className="size-8 shrink-0 text-gray-900" />,
+    icon: <PiTextAlignLeft className="size-8 shrink-0 text-gray-900" />,
     type: "NO"
   },
   {
     label: 'نص مع صورة',
-    icon: <ClipboardIconSuccess className="size-8 shrink-0 text-gray-900" />,
-        type: "yes"
+    icon: <PiImageDuotone className="size-8 shrink-0 text-gray-900" />,
+    type: "yes"
   },
   {
     label: 'نص مع فيديو',
-    icon: <ClipboardIconSuccess className="size-8 shrink-0 text-gray-900" />,
-      type: "yes"
+    icon: <PiVideoDuotone className="size-8 shrink-0 text-gray-900" />,
+    type: "yes"
   },
 ];
 
@@ -106,7 +112,7 @@ export default function StepOne() {
             control={control}
             name="name"
             render={({ field: { onChange, value } }) => (
-              <QuillEditor
+              <Textarea 
                 value={value}
                 labelClassName="font-semibold text-gray-900"
                 label="محتوى الدعوة"
@@ -133,11 +139,11 @@ export default function StepOne() {
                       value={type.label}
                       inputClassName="[&~span]:border-0 [&~span]:ring-1 [&~span]:ring-gray-200 [&~span:hover]:ring-primary [&:checked~span:hover]:ring-primary [&:checked~span]:border-1 [&:checked~.rizzui-advanced-radio]:ring-2 [&~span_.icon]:opacity-0 [&:checked~span_.icon]:opacity-100 [&~span]:space-y-2"
                     >
-                      <div className="min-h-auto gap-4 px-0 py-5 md:min-h-[104px] md:gap-5 md:px-8">
+                      <div className="min-h-auto text-primary h-32 flex flex-col text-center justify-center items-center  gap-4 px-0 py-2 md:min-h-[104px] md:gap-5 md:px-8">
                         {type.icon}
                         <Title
                           as="h4"
-                          className="font-inter text-lg font-medium md:text-xl"
+                          className="font-inter text-base font-medium md:text-lg"
                         >
                           {type.label}
                         </Title>

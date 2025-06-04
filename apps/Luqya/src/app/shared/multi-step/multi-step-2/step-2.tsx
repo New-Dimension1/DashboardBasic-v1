@@ -91,7 +91,7 @@ export default function StepOne() {
                     >
                       {property.label}
                     </Title>
-                    <Text className="max-w-full truncate text-base text-gray-500">
+                    <Text className="max-w-full  text-base text-gray-500">
                       {property.subLabel}
                     </Text>
                   </Flex>

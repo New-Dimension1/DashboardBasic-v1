@@ -61,9 +61,9 @@ import {
 // Note: do not add href in the label object, it is rendering as label
 export const menuItems = [
   // label start
-  {
-    name: 'Overview',
-  },
+  // {
+  //   name: 'Overview',
+  // },
   // label end
   {
     name: 'لوحة التحكم',
@@ -486,14 +486,14 @@ export const menuItems = [
   //   icon: <PiArrowsOut />,
   // },
   // label start
-  {
-    name: 'Pages',
-  },
-  {
-    name: 'Profile',
-    href: routes.profile,
-    icon: <PiUserCircle />,
-  },
+  // {
+  //   name: 'Pages',
+  // },
+  // {
+  //   name: 'الملف الشخصي',
+  //   href: routes.profile,
+  //   icon: <PiUserCircle />,
+  // },
   // {
   //   name: 'Welcome',
   //   href: routes.welcome,

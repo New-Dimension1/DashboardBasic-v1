@@ -13,7 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAtom } from 'jotai';
 import dynamic from 'next/dynamic';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
-import { FieldError, Input, Radio, RadioGroup, MultiSelect, Text } from 'rizzui';
+import { FieldError, Input, Radio, RadioGroup, MultiSelect, Text , Textarea } from 'rizzui';
 
 const QuillEditor = dynamic(() => import('@core/ui/quill-editor'), {
   ssr: false,
@@ -136,7 +136,7 @@ export default function StepTwo() {
                   control={control}
                   name="productDescription"
                   render={({ field: { onChange, value } }) => (
-                    <QuillEditor
+                    <Textarea 
                       value={value}
                       labelClassName="font-semibold text-gray-900"
                       label="قم باضافة الأرقام يدويا"
