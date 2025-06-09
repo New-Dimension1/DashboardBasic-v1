@@ -49,7 +49,7 @@ export default function FileDashboard() {
               <PiPlusBold className="ms-1 h-4 w-4" /> إنشاء مجموعة
             </Button>
           </Link>
-          <Link href="/" className="inline-flex">
+          <Link href={routes.multiStep2} className="inline-flex">
             <Button
               as="span"
               variant="outline"

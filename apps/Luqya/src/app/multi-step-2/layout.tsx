@@ -13,7 +13,7 @@ export default function MultiStepLayoutTwo({
       <Box className="relative">
         <Box className="absolute inset-x-0 top-0 h-[224px] md:h-[424px]">
           <Image
-            src="/multi-step-2-bg.jpg"
+            src="/multi-step-2-bg-2.webp"
             alt="art background"
             fill
             className="object-cover object-center"

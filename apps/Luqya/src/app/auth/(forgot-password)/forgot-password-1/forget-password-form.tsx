@@ -42,16 +42,16 @@ export default function ForgetPasswordForm() {
             <Input
               type="email"
               size="lg"
-              label="Email"
-              placeholder="Enter your email"
+              label="البريد الإلكتروني"
+              placeholder="أدخل بريدك الإلكتروني"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
               {...register('email')}
               error={errors.email?.message}
             />
             <Password
-              label="Password"
-              placeholder="Enter your password"
+              label="كلمة المرور"
+              placeholder="أدخل كلمة المرور الجديدة"
               size="lg"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
@@ -59,8 +59,8 @@ export default function ForgetPasswordForm() {
               error={errors.password?.message}
             />
             <Password
-              label="Confirm Password"
-              placeholder="Enter confirm password"
+              label="تأكيد كلمة المرور"
+              placeholder="أعد إدخال كلمة المرور"
               size="lg"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
@@ -68,18 +68,18 @@ export default function ForgetPasswordForm() {
               error={errors.confirmPassword?.message}
             />
             <Button className="mt-2 w-full" type="submit" size="lg">
-              Reset Password
+              إعادة تعيين كلمة المرور
             </Button>
           </div>
         )}
       </Form>
       <Text className="mt-6 text-center text-[15px] leading-loose text-gray-500 lg:mt-8 lg:text-start xl:text-base">
-        Don’t want to reset your password?{' '}
+        لا ترغب في إعادة تعيين كلمة المرور؟{' '}
         <Link
           href={routes.auth.signIn1}
           className="font-bold text-gray-700 transition-colors hover:text-blue"
         >
-          Sign In
+          تسجيل الدخول
         </Link>
       </Text>
     </>

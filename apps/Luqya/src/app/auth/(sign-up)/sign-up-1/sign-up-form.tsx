@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
-import { PiArrowRightBold } from 'react-icons/pi';
+import { PiArrowLeftBold } from 'react-icons/pi';
 import { Password, Checkbox, Button, Input, Text } from 'rizzui';
 import { Form } from '@core/ui/form';
 import { routes } from '@/config/routes';
@@ -41,8 +41,8 @@ export default function SignUpForm() {
             <Input
               type="text"
               size="lg"
-              label="First Name"
-              placeholder="Enter your first name"
+              label="الاسم الأول"
+              placeholder="أدخل الاسم الأول"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
               {...register('firstName')}
@@ -51,8 +51,8 @@ export default function SignUpForm() {
             <Input
               type="text"
               size="lg"
-              label="Last Name"
-              placeholder="Enter your last name"
+              label="اسم العائلة"
+              placeholder="أدخل اسم العائلة"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
               {...register('lastName')}
@@ -61,16 +61,16 @@ export default function SignUpForm() {
             <Input
               type="email"
               size="lg"
-              label="Email"
+              label="البريد الإلكتروني"
               className="col-span-2 [&>label>span]:font-medium"
               inputClassName="text-sm"
-              placeholder="Enter your email"
+              placeholder="أدخل بريدك الإلكتروني"
               {...register('email')}
               error={errors.email?.message}
             />
             <Password
-              label="Password"
-              placeholder="Enter your password"
+              label="كلمة المرور"
+              placeholder="أدخل كلمة المرور"
               size="lg"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
@@ -78,8 +78,8 @@ export default function SignUpForm() {
               error={errors.password?.message}
             />
             <Password
-              label="Confirm Password"
-              placeholder="Enter confirm password"
+              label="تأكيد كلمة المرور"
+              placeholder="أعد إدخال كلمة المرور"
               size="lg"
               className="[&>label>span]:font-medium"
               inputClassName="text-sm"
@@ -92,38 +92,38 @@ export default function SignUpForm() {
                 className="[&>label>span]:font-medium [&>label]:items-start"
                 label={
                   <>
-                    By signing up you have agreed to our{' '}
+                    بتسجيلك، فإنك توافق على{' '}
                     <Link
                       href="/"
                       className="font-medium text-blue transition-colors hover:underline"
                     >
-                      Terms
+                      الشروط
                     </Link>{' '}
-                    &{' '}
+                    و{' '}
                     <Link
                       href="/"
                       className="font-medium text-blue transition-colors hover:underline"
                     >
-                      Privacy Policy
+                      سياسة الخصوصية
                     </Link>
                   </>
                 }
               />
             </div>
-            <Button size="lg" type="submit" className="col-span-2 mt-2">
-              <span>Get Started</span>{' '}
-              <PiArrowRightBold className="ms-2 mt-0.5 h-5 w-5" />
+            <Button variant="solid" size="lg" type="submit" className="col-span-2 mt-2  !bg-primary">
+              <span>ابدأ الآن</span>{' '}
+              <PiArrowLeftBold className="ms-2 mt-0.5 h-5 w-5" />
             </Button>
           </div>
         )}
       </Form>
       <Text className="mt-6 text-center leading-loose text-gray-500 lg:mt-8 lg:text-start">
-        Don’t have an account?{' '}
+        لديك حساب بالفعل؟{' '}
         <Link
           href={routes.auth.signIn1}
           className="font-semibold text-gray-700 transition-colors hover:text-blue"
         >
-          Sign In
+          تسجيل الدخول
         </Link>
       </Text>
     </>
