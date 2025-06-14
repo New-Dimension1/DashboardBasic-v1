@@ -54,9 +54,9 @@ export default function StepTwo() {
         <h2 className="text-2xl @7xl:text-3xl @[113rem]:text-4xl">
     كذا تمام، وصلتِ لآخر خطوة!
           </h2>
-          <p className="mt-6 text-base">
-              خلصنا كل شي 🎉، حملنا صورة الدعوة وضفنا المدعوين. إذا ضغطتِ على "إرسال"، راح تنرسل الدعوة على طول.
-          </p>
+<p className="mt-6 text-base">
+  خلصنا كل شي 🎉، حملنا صورة الدعوة وضفنا المدعوين. إذا ضغطتِ على &quot;إرسال&quot;، راح تنرسل الدعوة على طول.
+</p>
       </form>
     </>
   );
