@@ -105,12 +105,12 @@ export const menuItems = [
   //   href: routes.affiliate.dashboard,
   //   icon: <PiChartPieSlice />,
   // },
-  // {
-  //   name: 'Store Analytics',
-  //   href: routes.storeAnalytics.dashboard,
-  //   icon: <PiPresentationChart />,
-  //   badge: 'NEW',
-  // },
+  {
+    name: 'Store Analytics',
+    href: routes.storeAnalytics.dashboard,
+    icon: <PiPresentationChart />,
+    badge: 'NEW',
+  },
   // {
   //   name: 'Bidding',
   //   href: routes.bidding.dashboard,
@@ -274,37 +274,37 @@ export const menuItems = [
   //     },
   //   ],
   // },
-  // {
-  //   name: 'Logistics',
-  //   href: '#',
-  //   icon: <PiPackage />,
-  //   dropdownItems: [
-  //     {
-  //       name: 'Shipment List',
-  //       href: routes.logistics.shipmentList,
-  //     },
-  //     {
-  //       name: 'Shipment Details',
-  //       href: routes.logistics.shipmentDetails(DUMMY_ID),
-  //     },
-  //     {
-  //       name: 'Create Shipment',
-  //       href: routes.logistics.createShipment,
-  //     },
-  //     {
-  //       name: 'Edit Shipment',
-  //       href: routes.logistics.editShipment(DUMMY_ID),
-  //     },
-  //     {
-  //       name: 'Customer Profile',
-  //       href: routes.logistics.customerProfile,
-  //     },
-  //     {
-  //       name: 'Tracking',
-  //       href: routes.logistics.tracking(DUMMY_ID),
-  //     },
-  //   ],
-  // },
+  {
+    name: 'Logistics',
+    href: '#',
+    icon: <PiPackage />,
+    dropdownItems: [
+      {
+        name: 'Shipment List',
+        href: routes.logistics.shipmentList,
+      },
+      {
+        name: 'Shipment Details',
+        href: routes.logistics.shipmentDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Shipment',
+        href: routes.logistics.createShipment,
+      },
+      {
+        name: 'Edit Shipment',
+        href: routes.logistics.editShipment(DUMMY_ID),
+      },
+      {
+        name: 'Customer Profile',
+        href: routes.logistics.customerProfile,
+      },
+      {
+        name: 'Tracking',
+        href: routes.logistics.tracking(DUMMY_ID),
+      },
+    ],
+  },
   // {
   //   name: 'Job Feeds',
   //   href: routes.jobBoard.jobFeed,

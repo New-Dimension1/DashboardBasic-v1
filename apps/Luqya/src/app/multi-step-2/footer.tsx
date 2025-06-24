@@ -45,7 +45,7 @@ export default function Footer({ isLoading, className }: FooterProps) {
   }, [pathname, searchParams]);
 
   function buttonAttr() {
-    if (step === 6) {
+    if (step === (6 as any)) {
       return {
         onClick: () => push('/'),
       };
