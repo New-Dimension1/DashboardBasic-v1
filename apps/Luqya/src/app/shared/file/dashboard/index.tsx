@@ -44,7 +44,7 @@ export default function FileDashboard() {
         className="mb-10 border border-muted bg-gray-0 pb-8 text-right @4xl:col-span-2 @7xl:col-span-8 dark:bg-gray-100/30 lg:pb-9"
       >
         <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-start">
-          <Link href="/" className="inline-flex">
+          <Link href={routes.eCommerce.createProduct} className="inline-flex">
             <Button as="span" className="h-[38px] shadow md:h-10">
               <PiPlusBold className="ms-1 h-4 w-4" /> إنشاء مجموعة
             </Button>
