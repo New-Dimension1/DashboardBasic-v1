@@ -106,7 +106,7 @@ export const menuItems = [
   //   icon: <PiChartPieSlice />,
   // },
   {
-    name: 'Store Analytics',
+    name: 'لتجريب جديد',
     href: routes.storeAnalytics.dashboard,
     icon: <PiPresentationChart />,
     badge: 'NEW',
@@ -275,7 +275,7 @@ export const menuItems = [
   //   ],
   // },
   {
-    name: 'Logistics',
+    name: 'try',
     href: '#',
     icon: <PiPackage />,
     dropdownItems: [
